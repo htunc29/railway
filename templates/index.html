@@ -80,10 +80,10 @@
             <button type="submit">Ekle</button>
         </form>
         <ul>
-            {% for i, todo in enumerate(todos) %}
+            {% for todo in todos %}
             <li>
                 {{ todo }}
-                <a href="{{ url_for('sil', index=i) }}" class="sil">Sil</a>
+                <a href="{{ url_for('sil', index=loop.index0) }}" class="sil">Sil</a>
             </li>
             {% else %}
             <li>Henüz bir görev eklenmedi.</li>
