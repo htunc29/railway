@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hoşgeldiniz</title>
+    <title>Todo Uygulaması</title>
     <style>
         body {
             background: #f5f6fa;
@@ -21,21 +21,74 @@
             border-radius: 12px;
             box-shadow: 0 4px 24px rgba(0,0,0,0.08);
             text-align: center;
+            min-width: 350px;
         }
         h1 {
             color: #273c75;
             margin-bottom: 16px;
         }
-        p {
-            color: #353b48;
-            font-size: 18px;
+        form {
+            margin-bottom: 24px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #dcdde1;
+            border-radius: 6px;
+            font-size: 16px;
+            width: 200px;
+        }
+        button, .sil {
+            padding: 10px 16px;
+            background: #273c75;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.2s;
+        }
+        button:hover, .sil:hover {
+            background: #e84118;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f1f2f6;
+            margin-bottom: 8px;
+            padding: 10px 16px;
+            border-radius: 6px;
+        }
+        .sil {
+            background: #e84118;
+            margin-left: 10px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Flask Uygulamasına Hoşgeldiniz!</h1>
-        <p>Bu, veritabanı olmadan hazırlanmış basit bir Flask uygulamasıdır.</p>
+        <h1>Yapılacaklar Listesi</h1>
+        <form method="POST" autocomplete="off">
+            <input type="text" name="todo" placeholder="Yeni bir görev ekle..." required>
+            <button type="submit">Ekle</button>
+        </form>
+        <ul>
+            {% for i, todo in enumerate(todos) %}
+            <li>
+                {{ todo }}
+                <a href="{{ url_for('sil', index=i) }}" class="sil">Sil</a>
+            </li>
+            {% else %}
+            <li>Henüz bir görev eklenmedi.</li>
+            {% endfor %}
+        </ul>
     </div>
 </body>
 </html> 
