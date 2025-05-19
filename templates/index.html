@@ -82,8 +82,8 @@
         <ul>
             {% for todo in todos %}
             <li>
-                {{ todo }}
-                <a href="{{ url_for('sil', index=loop.index0) }}" class="sil">Sil</a>
+                {{ todo.text }}
+                <a href="{{ url_for('sil', id=todo.id) }}" class="sil">Sil</a>
             </li>
             {% else %}
             <li>Henüz bir görev eklenmedi.</li>
